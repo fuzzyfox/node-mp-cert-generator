@@ -7,13 +7,15 @@ var spawn = require( 'child_process' ).spawn;
 var request = require( 'request' );
 
 // take missing details for cert and convert to svg string
-function render( reciepient, issuer, date, tmplt ) {
+function render( recipient, issuer, date, tmplt ) {
 	// allow tmplt to be optional
 	tmplt = tmplt || __dirname + '/assets/defaultTemplate.svg';
+	// allow issuer to be optional
 	issuer = issuer || __dirname + '/assets/defaultIssuer.svg';
-
 	// allow date to be optional
 	date = date || moment().format('MMMM do, YYYY');
+
+	console.log( tmplt, issuer, date );
 
 	// bad regex to determin if tmplt is a filepath or string
 	var isSVGFilePathRegex = /\.svg$/i;
@@ -24,12 +26,12 @@ function render( reciepient, issuer, date, tmplt ) {
 	}
 
 	// check if we need to turn an issuer file to a string
-	if( isSVGFilePathRegex.text( issuer ) ) {
+	if( isSVGFilePathRegex.test( issuer ) ) {
 		issuer = fs.readFileSync( issuer, 'utf-8' );
 	}
 
 	// update the cert details
-	tmplt = tmplt.replace( '{{ reciepient }}', reciepient );
+	tmplt = tmplt.replace( '{{ recipient }}', recipient );
 	tmplt = tmplt.replace( '{{ date }}', date );
 	tmplt = tmplt.replace( '{{ issuer }}', issuer );
 
@@ -121,9 +123,9 @@ function convert( svg, outputFormat, svableKey, callback ) {
 
 // exports
 module.exports = {
-	convert: function() {},
-	remoteConvert: function() {},
-	localConvert: function() {},
-	render: function() {},
+	convert: convert,
+	remoteConvert: remoteConvert,
+	localConvert: localConvert,
+	render: render,
 	generate: function() {}
 };
