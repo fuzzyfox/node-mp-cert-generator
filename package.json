@@ -1,6 +1,6 @@
 {
   "name": "node-mp-cert-generator",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A node module to generate Maker Party certificates + convert them to pdf/png from svg",
   "main": "index.js",
   "scripts": {

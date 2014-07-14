@@ -28,7 +28,7 @@ function render( recipient, issuer, date, tmplt ) {
   // allow issuer to be optional
   issuer = issuer || __dirname + '/assets/defaultIssuer.svg';
   // allow date to be optional
-  date = date || moment().format('MMMM do, YYYY');
+  date = date || moment().format('MMMM Do, YYYY');
 
   console.log( tmplt, issuer, date );
 
