@@ -150,8 +150,13 @@ function convert( svg, outputFormat, svableKey, callback ) {
     return localConvert( svg, outputFormat, svableKey );
   }
 
+  // third param is undefined
+  if( typeof svableKey === 'undefined' ) {
+    return localConvert( svg, outputFormat, callback );
+  }
+
   // fourth param is a string, assume its an apikey
-  if( typeof svableKey === 'string') {
+  if( typeof svableKey === 'string' ) {
     return remoteConvert( svg, outputFormat, svableKey, callback );
   }
 
