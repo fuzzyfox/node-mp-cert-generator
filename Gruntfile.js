@@ -35,6 +35,8 @@ module.exports = function( grunt ) {
     // validate svg files
     validation: {
       options: {
+        // always run all tests when this is called
+        reset: true,
         // we don't 100% need the xml content type for our SVGs
         relaxerror: [ 'Non-XML Content-Type: .' ],
         // fail the task if other errors found
@@ -53,5 +55,5 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-bump' );
 
   // default task is to run tests, all we need
-  grunt.registerTask( 'default', [ 'jshint' ] );
+  grunt.registerTask( 'default', [ 'jshint', 'validation' ] );
 };
